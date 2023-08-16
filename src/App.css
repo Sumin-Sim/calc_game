@@ -93,12 +93,16 @@ div.team {
         box-sizing: border-box;
         background: url('./img/box_red.png') no-repeat;
         background-size: cover;
+    }
+    ul li b {
         color: #f17373;
     }
     div#blue ul li>span {
         background: url('./img/box_blue.png') no-repeat;
         background-size: cover;
-        color: #7090ee
+    }
+    div#blue ul li b {
+        color: #7090ee;
     }
 
 

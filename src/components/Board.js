@@ -2,36 +2,37 @@ export default function Board(props) {
     // 무작위 숫자와 연산기호 출력 
     function change(n) {
         const contentBox = document.querySelector(`div#${props.team} ul li:nth-child(${n})>span`);
+        const numBox = document.querySelector(`div#${props.team} ul li:nth-child(${n})>b`);
         if(n % 2 === 1) {
             let random = Math.ceil(Math.random() * 10);
-            contentBox.innerHTML = random;
-            contentBox.style.backgroundSize="0";
+            contentBox.style.display="none";
+            numBox.innerHTML = random;
             props.record.splice(n - 1,1,random);
             props.setCount(props.count + 1);
         } else {
             let random = Math.ceil(Math.random() * 4);
             switch(random) {
                 case 1: {
-                    contentBox.innerHTML = '+';
-                    contentBox.style.backgroundSize="0";
+                    contentBox.style.display="none";
+                    numBox.innerHTML = '+';
                     props.record.splice(n - 1,1,'+');
                 };
                     break;
                 case 2: {
-                    contentBox.innerHTML = '-';
-                    contentBox.style.backgroundSize="0";
+                    contentBox.style.display="none";
+                    numBox.innerHTML = '-';
                     props.record.splice(n - 1,1,'-');
                 };
                     break;
                 case 3: {
-                    contentBox.innerHTML = '×';
-                    contentBox.style.backgroundSize="0";
+                    contentBox.style.display="none";
+                    numBox.innerHTML = '×';
                     props.record.splice(n - 1,1,'*');
                 };
                     break;
                 case 4: {
-                    contentBox.innerHTML = '÷';
-                    contentBox.style.backgroundSize="0";
+                    contentBox.style.display="none";
+                    numBox.innerHTML = '÷';
                     props.record.splice(n - 1,1,'/');
                 };
             }
@@ -187,16 +188,19 @@ export default function Board(props) {
         for(let i = 1 ; i <= 7 ; i ++) {
             // red
             const contentBoxR = document.querySelector(`div#red ul li:nth-child(${i})>span`);
-            contentBoxR.style.backgroundSize="cover";
-            contentBoxR.textContent=""
+            const numBoxR = document.querySelector(`div#red ul li:nth-child(${i})>b`);
+            contentBoxR.style.display="block";
+            numBoxR.textContent=""
 
             // blue
             const contentBoxB = document.querySelector(`div#blue ul li:nth-child(${i})>span`);
-            contentBoxB.style.backgroundSize="cover";
-            contentBoxB.textContent=""
+            const numBoxB = document.querySelector(`div#blue ul li:nth-child(${i})>b`);
+            contentBoxB.style.display="block";
+            numBoxB.textContent=""
         }
 
         props.setReset('n');
+        props.setCount(0);
     }
 
 
@@ -206,13 +210,13 @@ export default function Board(props) {
             <h2>{props.team} Team</h2>
             <ul>
                 {/* {props.record.map((item,index) => (<li key={index + 1}><span onClick={() => change(index + 1)}></span></li>))} */}
-                <li><span className="list" onClick={() => change(1)}></span></li>
-                <li><span className="list" onClick={() => change(2)}></span></li>
-                <li><span className="list" onClick={() => change(3)}></span></li>
-                <li><span className="list" onClick={() => change(4)}></span></li>
-                <li><span className="list" onClick={() => change(5)}></span></li>
-                <li><span className="list" onClick={() => change(6)}></span></li>
-                <li><span className="list" onClick={() => change(7)}></span></li>
+                <li><span className="list" onClick={() => change(1)}></span><b></b></li>
+                <li><span className="list" onClick={() => change(2)}></span><b></b></li>
+                <li><span className="list" onClick={() => change(3)}></span><b></b></li>
+                <li><span className="list" onClick={() => change(4)}></span><b></b></li>
+                <li><span className="list" onClick={() => change(5)}></span><b></b></li>
+                <li><span className="list" onClick={() => change(6)}></span><b></b></li>
+                <li><span className="list" onClick={() => change(7)}></span><b></b></li>
             </ul>
         </section>
     );
